@@ -1,23 +1,34 @@
-import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
+import {
+  View,
+  Pressable,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Platform,
+} from 'react-native';
 import EmptyDate from './EmptyDate';
 
-export default function CalendarDay(props) {
+function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
-  let nextMonth = [];
-  if (props.dayOfMonth === 1) {
-    for (let i = 0; i < 5 - (6 - props.dayOfWeek); i++) {
+  if (dayOfMonth === 1) {
+    for (let i = 0; i < 5 - (6 - dayOfWeek); i++) {
       lastMonth.push(<EmptyDate key={i} />);
     }
   }
+  return lastMonth;
+}
 
+export default function CalendarDay(props) {
   return (
     <>
       {props.dayOfMonth === 1 && props.dayOfWeek != 1
-        ? lastMonth.map((e) => e)
+        ? calculateEmptyDates(props.dayOfMonth, props.dayOfWeek).map((e) => e)
         : ''}
       <View>
         <View style={styles.day}>
-          <Text style={{ margin: 'auto' }}>{props.dayOfMonth}</Text>
+          <Pressable style={styles.dayText}>
+            <Text style={styles.dayText}>{props.dayOfMonth}</Text>
+          </Pressable>
         </View>
       </View>
       {props.dayOfWeek === 5 ? '\n' : ''}
@@ -31,21 +42,31 @@ const styles = StyleSheet.create({
       android: {
         height: Dimensions.get('window').width / 6,
         width: Dimensions.get('window').width / 6,
-        // fontSize: 20,
       },
       ios: {
         height: Dimensions.get('window').width / 8,
         width: Dimensions.get('window').width / 8,
-        fontSize: 20,
       },
       default: {
         height: Dimensions.get('window').width / 20,
         width: Dimensions.get('window').width / 20,
-        fontSize: 32,
         margin: 5,
       },
     }),
     borderRadius: 10,
-    // backgroundColor: 'lightgreen',
+  },
+  dayText: {
+    ...Platform.select({
+      android: {
+        fontSize: 20,
+      },
+      ios: {
+        fontSize: 20,
+      },
+      default: {
+        fontSize: 34,
+      },
+    }),
+    margin: 'auto',
   },
 });

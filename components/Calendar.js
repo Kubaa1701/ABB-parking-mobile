@@ -1,9 +1,8 @@
 import { View, Text } from 'react-native';
 import CalendarDay from './CalendarDay';
-import { date } from 'date-fns';
-import { format, getDaysInMonth, getISODay } from 'date-fns';
-
-function daysTable() {
+import { date, format, getDaysInMonth, getISODay } from 'date-fns';
+import Days from './Days';
+function createDaysTable() {
   const today = new Date();
   const month = today.getMonth() + 1;
   const year = today.getFullYear();
@@ -23,19 +22,29 @@ function daysTable() {
 }
 
 export default function Calendar() {
-  let day = daysTable();
+  let day = createDaysTable();
   return (
-    <View style={{ margin: 'auto' }}>
-      <Text>
-        {day.map((e) => (
-          <CalendarDay
-            key={e[0]}
-            dayOfMonth={e[0]}
-            dayOfWeek={e[1]}
-            lastDayOfMonth={day[day.length - 1][0]}
-          />
-        ))}
-      </Text>
+    <View style={{ width: '100%', backgroundColor: '#D9D9D9' }}>
+      <View style={{ margin: 'auto', marginTop: 20 }}>
+        {/* <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <DayName name="Mon" />
+        <DayName name="Tue" />
+        <DayName name="Wed" />
+        <DayName name="Thu" />
+        <DayName name="Fri" />
+      </View> */}
+        <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
+        <Text>
+          {day.map((e) => (
+            <CalendarDay
+              key={e[0]}
+              dayOfMonth={e[0]}
+              dayOfWeek={e[1]}
+              lastDayOfMonth={day[day.length - 1][0]}
+            />
+          ))}
+        </Text>
+      </View>
     </View>
   );
 }
