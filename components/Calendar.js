@@ -4,7 +4,7 @@ import { date, format, getDaysInMonth, getISODay } from 'date-fns';
 import Days from './Days';
 function createDaysTable() {
   const today = new Date();
-  const month = today.getMonth() + 1;
+  const month = today.getMonth();
   const year = today.getFullYear();
   const numDays = getDaysInMonth(today);
   const weekdayTab = [];
@@ -26,13 +26,6 @@ export default function Calendar() {
   return (
     <View style={{ width: '100%', backgroundColor: '#D9D9D9' }}>
       <View style={{ margin: 'auto', marginTop: 20 }}>
-        {/* <View style={{ display: 'flex', flexDirection: 'row' }}>
-        <DayName name="Mon" />
-        <DayName name="Tue" />
-        <DayName name="Wed" />
-        <DayName name="Thu" />
-        <DayName name="Fri" />
-      </View> */}
         <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
         <Text>
           {day.map((e) => (

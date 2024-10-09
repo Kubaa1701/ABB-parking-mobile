@@ -6,7 +6,10 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
+import { useState } from 'react';
+import React from 'react';
 import EmptyDate from './EmptyDate';
+import DayModal from './DayModal';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -19,20 +22,37 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 }
 
 export default function CalendarDay(props) {
+  const { dayOfMonth, dayOfWeek } = props;
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const renderEmptyDates = () => {
+    if (dayOfMonth === 1 && dayOfWeek !== 1) {
+      return calculateEmptyDates(dayOfMonth, dayOfWeek).map((e, index) => (
+        <View key={index}>{e}</View>
+      ));
+    }
+    return null;
+  };
+
   return (
-    <>
-      {props.dayOfMonth === 1 && props.dayOfWeek != 1
-        ? calculateEmptyDates(props.dayOfMonth, props.dayOfWeek).map((e) => e)
-        : ''}
+    <React.Fragment>
+      {renderEmptyDates()}
       <View>
-        <View style={styles.day}>
-          <Pressable style={styles.dayText}>
-            <Text style={styles.dayText}>{props.dayOfMonth}</Text>
-          </Pressable>
-        </View>
+        <Pressable
+          style={styles.dayText}
+          onPress={() => {
+            console.log(dayOfMonth);
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.day}>
+            <Text style={styles.dayText}>{dayOfMonth}</Text>
+          </View>
+        </Pressable>
+        <DayModal visible={modalVisible} />
       </View>
-      {props.dayOfWeek === 5 ? '\n' : ''}
-    </>
+      {dayOfWeek === 5 && <Text>{'\n'}</Text>}
+    </React.Fragment>
   );
 }
 
@@ -64,7 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        fontSize: 34,
+        fontSize: 30,
       },
     }),
     margin: 'auto',
