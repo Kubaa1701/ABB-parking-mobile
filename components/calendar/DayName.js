@@ -8,17 +8,14 @@ const styles = StyleSheet.create({
   text: {
     ...Platform.select({
       android: {
-        // height: Dimensions.get('window').width / 6,
         width: Dimensions.get('window').width / 6,
         fontSize: 20,
       },
       ios: {
-        // height: Dimensions.get('window').width / 8,
         width: Dimensions.get('window').width / 6,
         fontSize: 20,
       },
       default: {
-        // height: Dimensions.get('window').width / 20,
         width: Dimensions.get('window').width / 20,
         fontSize: 30,
         margin: 5,

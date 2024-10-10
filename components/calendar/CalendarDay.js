@@ -41,7 +41,6 @@ export default function CalendarDay(props) {
         <Pressable
           style={styles.dayText}
           onPress={() => {
-            console.log(dayOfMonth);
             setModalVisible(!modalVisible);
           }}
         >
@@ -49,7 +48,10 @@ export default function CalendarDay(props) {
             <Text style={styles.dayText}>{dayOfMonth}</Text>
           </View>
         </Pressable>
-        <DayModal visible={modalVisible} />
+        <DayModal
+          visible={modalVisible}
+          setVisible={setModalVisible}
+        />
       </View>
       {dayOfWeek === 5 && <Text>{'\n'}</Text>}
     </React.Fragment>
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
     }),
     borderRadius: 10,
   },
+  //TODO: fontSize dependent on window width
   dayText: {
     ...Platform.select({
       android: {
