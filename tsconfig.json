@@ -11,7 +11,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "components/CalendarDay.js",
-    "components/Calendar.js"
-  ]
+    "components/calendar/CalendarDay.js",
+    "components/calendar/Calendar.js"
+, "app/(tabs)/settings.jsx"  ]
 }

@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import Calendar from '@/components/Calendar';
+import Calendar from '@/components/calendar/Calendar';
 
 export default function Index() {
   return (

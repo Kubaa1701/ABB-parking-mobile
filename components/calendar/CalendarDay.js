@@ -5,11 +5,11 @@ import {
   StyleSheet,
   Dimensions,
   Platform,
-} from 'react-native';
-import { useState } from 'react';
-import React from 'react';
-import EmptyDate from './EmptyDate';
-import DayModal from './DayModal';
+} from "react-native";
+import { useState } from "react";
+import React from "react";
+import EmptyDate from "./EmptyDate";
+import DayModal from "./DayModal";
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -51,7 +51,7 @@ export default function CalendarDay(props) {
         </Pressable>
         <DayModal visible={modalVisible} />
       </View>
-      {dayOfWeek === 5 && <Text>{'\n'}</Text>}
+      {dayOfWeek === 5 && <Text>{"\n"}</Text>}
     </React.Fragment>
   );
 }
@@ -60,16 +60,16 @@ const styles = StyleSheet.create({
   day: {
     ...Platform.select({
       android: {
-        height: Dimensions.get('window').width / 6,
-        width: Dimensions.get('window').width / 6,
+        height: Dimensions.get("window").width / 6,
+        width: Dimensions.get("window").width / 6,
       },
       ios: {
-        height: Dimensions.get('window').width / 8,
-        width: Dimensions.get('window').width / 8,
+        height: Dimensions.get("window").width / 8,
+        width: Dimensions.get("window").width / 8,
       },
       default: {
-        height: Dimensions.get('window').width / 20,
-        width: Dimensions.get('window').width / 20,
+        height: Dimensions.get("window").width / 6,
+        width: Dimensions.get("window").width / 6,
         margin: 5,
       },
     }),
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
       },
     }),
-    margin: 'auto',
+    margin: "auto",
   },
 });
