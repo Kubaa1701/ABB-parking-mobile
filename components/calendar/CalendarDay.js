@@ -24,7 +24,6 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 export default function CalendarDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [modalVisible, setModalVisible] = useState(false);
-  const [status, setStatus] = useState('');
   let statusName = '';
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
