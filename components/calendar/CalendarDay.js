@@ -34,14 +34,14 @@ export default function CalendarDay(props) {
     }
     return null;
   };
-  function checkReservationStatus(dayOfMonth) {
+  function checkReservationStatus() {
     props.status.forEach((e) => {
       if (e.day === dayOfMonth) {
         statusName = e.status;
       }
     });
   }
-  checkReservationStatus(dayOfMonth);
+  checkReservationStatus();
   return (
     <React.Fragment>
       {renderEmptyDates()}
@@ -59,7 +59,14 @@ export default function CalendarDay(props) {
               statusName === 'Oczekujący' && styles.oczekujacy,
             ]}
           >
-            <Text style={styles.dayText}>{dayOfMonth}</Text>
+            <Text
+              style={[
+                styles.dayText,
+                dayOfMonth <= Number(props.today) && styles.previousDate,
+              ]}
+            >
+              {dayOfMonth}
+            </Text>
           </View>
         </Pressable>
         <DayModal
@@ -111,5 +118,8 @@ const styles = StyleSheet.create({
   },
   oczekujacy: {
     backgroundColor: '#e8c354',
+  },
+  previousDate: {
+    color: '#b8b8b8',
   },
 });

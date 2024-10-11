@@ -24,17 +24,24 @@ function createDaysTable() {
   return weekdayTab;
 }
 
+function getCurrentDay() {
+  const today = new Date();
+  return today.getDate();
+}
+
 export default function Calendar() {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
   useEffect(() => {
     getReservationStatus().then((e) => {
-      setResult(e.result);
+      if (e.result) {
+        setResult(e.result);
+      }
     });
   }, []);
   return (
     <View style={{ width: '100%', backgroundColor: '#D9D9D9' }}>
-      {result.length !== 0 ? (
+      {result ? (
         <View style={{ margin: 'auto', marginTop: 20 }}>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>
@@ -44,6 +51,7 @@ export default function Calendar() {
                 dayOfMonth={e[0]}
                 dayOfWeek={e[1]}
                 lastDayOfMonth={day[day.length - 1][0]}
+                today={getCurrentDay()}
                 status={result}
               />
             ))}
