@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        width: Dimensions.get('window').width / 20,
+        width: Dimensions.get('window').width / 6,
         fontSize: 30,
         margin: 5,
       },

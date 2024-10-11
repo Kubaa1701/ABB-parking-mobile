@@ -24,7 +24,8 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 export default function CalendarDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [status, setStatus] = useState('');
+  let statusName = '';
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
       return calculateEmptyDates(dayOfMonth, dayOfWeek).map((e, index) => (
@@ -33,7 +34,14 @@ export default function CalendarDay(props) {
     }
     return null;
   };
-
+  function checkReservationStatus(dayOfMonth) {
+    props.status.forEach((e) => {
+      if (e.day === dayOfMonth) {
+        statusName = e.status;
+      }
+    });
+  }
+  checkReservationStatus(dayOfMonth);
   return (
     <React.Fragment>
       {renderEmptyDates()}
@@ -44,7 +52,13 @@ export default function CalendarDay(props) {
             setModalVisible(!modalVisible);
           }}
         >
-          <View style={styles.day}>
+          <View
+            style={[
+              styles.day,
+              statusName === 'Potwierdzony' && styles.potwierdzony,
+              statusName === 'Oczekujący' && styles.oczekujacy,
+            ]}
+          >
             <Text style={styles.dayText}>{dayOfMonth}</Text>
           </View>
         </Pressable>
@@ -70,12 +84,12 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 8,
       },
       default: {
-        height: Dimensions.get('window').width / 20,
-        width: Dimensions.get('window').width / 20,
+        height: Dimensions.get('window').width / 6,
+        width: Dimensions.get('window').width / 6,
         margin: 5,
       },
     }),
-    borderRadius: 10,
+    borderRadius: 100,
   },
   //TODO: fontSize dependent on window width
   dayText: {
@@ -91,5 +105,11 @@ const styles = StyleSheet.create({
       },
     }),
     margin: 'auto',
+  },
+  potwierdzony: {
+    backgroundColor: '#63cf79',
+  },
+  oczekujacy: {
+    backgroundColor: '#e8c354',
   },
 });
