@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 8,
       },
       default: {
-        width: Dimensions.get('window').width / 20 + 10,
+        width: Dimensions.get('window').width / 6 + 10,
       },
     }),
   },
