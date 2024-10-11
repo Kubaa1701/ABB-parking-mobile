@@ -3,7 +3,7 @@ import Calendar from '@/components/calendar/Calendar';
 
 export default function Index() {
   return (
-    <View>
+    <View style={{ backgroundColor: '#E9E9E9' }}>
       <Calendar />
     </View>
   );

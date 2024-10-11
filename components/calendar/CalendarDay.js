@@ -5,11 +5,11 @@ import {
   StyleSheet,
   Dimensions,
   Platform,
-} from "react-native";
-import { useState } from "react";
-import React from "react";
-import EmptyDate from "./EmptyDate";
-import DayModal from "./DayModal";
+} from 'react-native';
+import { useState } from 'react';
+import React from 'react';
+import EmptyDate from './EmptyDate';
+import DayModal from './DayModal';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -24,7 +24,8 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 export default function CalendarDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [status, setStatus] = useState('');
+  let statusName = '';
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
       return calculateEmptyDates(dayOfMonth, dayOfWeek).map((e, index) => (
@@ -33,7 +34,14 @@ export default function CalendarDay(props) {
     }
     return null;
   };
-
+  function checkReservationStatus(dayOfMonth) {
+    props.status.forEach((e) => {
+      if (e.day === dayOfMonth) {
+        statusName = e.status;
+      }
+    });
+  }
+  checkReservationStatus(dayOfMonth);
   return (
     <React.Fragment>
       {renderEmptyDates()}
@@ -41,17 +49,25 @@ export default function CalendarDay(props) {
         <Pressable
           style={styles.dayText}
           onPress={() => {
-            console.log(dayOfMonth);
             setModalVisible(!modalVisible);
           }}
         >
-          <View style={styles.day}>
+          <View
+            style={[
+              styles.day,
+              statusName === 'Potwierdzony' && styles.potwierdzony,
+              statusName === 'Oczekujący' && styles.oczekujacy,
+            ]}
+          >
             <Text style={styles.dayText}>{dayOfMonth}</Text>
           </View>
         </Pressable>
-        <DayModal visible={modalVisible} />
+        <DayModal
+          visible={modalVisible}
+          setVisible={setModalVisible}
+        />
       </View>
-      {dayOfWeek === 5 && <Text>{"\n"}</Text>}
+      {dayOfWeek === 5 && <Text>{'\n'}</Text>}
     </React.Fragment>
   );
 }
@@ -60,21 +76,22 @@ const styles = StyleSheet.create({
   day: {
     ...Platform.select({
       android: {
-        height: Dimensions.get("window").width / 6,
-        width: Dimensions.get("window").width / 6,
+        height: Dimensions.get('window').width / 6,
+        width: Dimensions.get('window').width / 6,
       },
       ios: {
-        height: Dimensions.get("window").width / 8,
-        width: Dimensions.get("window").width / 8,
+        height: Dimensions.get('window').width / 8,
+        width: Dimensions.get('window').width / 8,
       },
       default: {
-        height: Dimensions.get("window").width / 6,
-        width: Dimensions.get("window").width / 6,
+        height: Dimensions.get('window').width / 6,
+        width: Dimensions.get('window').width / 6,
         margin: 5,
       },
     }),
-    borderRadius: 10,
+    borderRadius: 100,
   },
+  //TODO: fontSize dependent on window width
   dayText: {
     ...Platform.select({
       android: {
@@ -87,6 +104,12 @@ const styles = StyleSheet.create({
         fontSize: 30,
       },
     }),
-    margin: "auto",
+    margin: 'auto',
+  },
+  potwierdzony: {
+    backgroundColor: '#63cf79',
+  },
+  oczekujacy: {
+    backgroundColor: '#e8c354',
   },
 });
