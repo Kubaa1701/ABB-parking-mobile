@@ -12,16 +12,16 @@ export default function RootLayout() {
   });
   return (
     <React.Fragment>
-      {isLoggedIn ? (
-        <Stack>
-          <Stack.Screen
-            name="(tabs)"
-            options={{ headerShown: false }}
-          ></Stack.Screen>
-        </Stack>
-      ) : (
+      {/* {isLoggedIn ? ( */}
+      <Stack>
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+      </Stack>
+      {/* ) : (
         <LoginScreen setIsLoggedIn={setIsLoggedIn} />
-      )}
+      )} */}
     </React.Fragment>
   );
 }

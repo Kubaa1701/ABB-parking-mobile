@@ -15,7 +15,9 @@ export default function DayModal(props) {
         style={{ margin: 0 }}
       >
         <View style={styles.modalView}>
-          <Text>free spaces</Text>
+          <Text style={{ margin: 'auto', fontSize: 30 }}>
+            {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
+          </Text>
         </View>
       </Modal>
     </View>

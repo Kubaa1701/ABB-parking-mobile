@@ -72,6 +72,7 @@ export default function CalendarDay(props) {
         <DayModal
           visible={modalVisible}
           setVisible={setModalVisible}
+          status={statusName}
         />
       </View>
       {dayOfWeek === 5 && <Text>{'\n'}</Text>}
