@@ -1,13 +1,15 @@
 import { Tabs } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React from 'react';
+import { horizontalScale, moderateScale, verticalScale } from '@/styles/metrics';
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'red' }}>
+    <Tabs screenOptions={screenOptions}>
       <Tabs.Screen
         name="index"
         options={{
+          headerShown: false,
           title: 'Home',
           tabBarIcon: ({ color }) => (
             <FontAwesome
@@ -21,6 +23,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="settings"
         options={{
+          headerShown: false,
           title: 'Settings',
           tabBarIcon: ({ color }) => (
             <FontAwesome
@@ -33,4 +36,18 @@ export default function TabsLayout() {
       />
     </Tabs>
   );
+}
+
+const screenOptions = {
+  tabBarStyle: {
+    height: verticalScale(60),
+  },
+  tabBarItemStyle: {
+    marginTop: verticalScale(5),
+    marginBottom: verticalScale(5),
+  },
+  tabBarLabelStyle: {
+    fontSize: moderateScale(16),
+  },
+  tabBarActiveTintColor: 'red',
 }

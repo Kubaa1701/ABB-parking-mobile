@@ -1,5 +1,10 @@
-import { View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
-import findUser from "@/components/login/findUser";
+import { View, Text, Pressable, StyleSheet, Dimensions } from 'react-native';
+import findUser from '@/components/login/findUser';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 export default function ContinueButton(props) {
   return (
@@ -8,8 +13,8 @@ export default function ContinueButton(props) {
         style={styles.button}
         onPress={() => {
           findUser().then((result) => {
-            props.setIsLoggedIn(result["isLoggedIn"]);
-            if (!result["isLoggedIn"]) {
+            props.setIsLoggedIn(result['isLoggedIn']);
+            if (!result['isLoggedIn']) {
               props.setRedirected(false);
               props.showErrorMsg(true);
             }
@@ -24,18 +29,21 @@ export default function ContinueButton(props) {
 
 const styles = StyleSheet.create({
   view: {
-    margin: "auto",
-    width: Dimensions.get("window").width,
+    margin: 'auto',
   },
   buttonText: {
-    fontSize: 50,
-    textAlign: "center",
+    fontSize: moderateScale(20),
+    textAlign: 'center',
+    margin: 'auto',
   },
   button: {
-    width: Dimensions.get("window").width / 1.5,
-    margin: "auto",
-    backgroundColor: "#f5f5f5",
-    padding: 40,
-    borderRadius: 25,
+    width: horizontalScale(200),
+    height: verticalScale(75),
+    margin: 'auto',
+    backgroundColor: '#f5f5f5',
+    padding: moderateScale(20),
+    borderRadius: moderateScale(15),
+    display: 'flex',
+    flexDirection: 'row-reverse',
   },
 });

@@ -6,8 +6,13 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-} from "react-native";
-import getLoginLink from "@/components/login/getLoginLink";
+} from 'react-native';
+import getLoginLink from '@/components/login/getLoginLink';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 export default function LoginButton(props) {
   return (
@@ -16,14 +21,14 @@ export default function LoginButton(props) {
         style={styles.button}
         onPress={() => {
           getLoginLink().then((result) => {
-            Linking.openURL(result["link"]);
+            Linking.openURL(result['link']);
             props.setRedirected(true);
           });
         }}
       >
         <Image
           style={styles.img}
-          source={require("@/assets/images/microsoft_logo.png")}
+          source={require('@/assets/images/microsoft_logo.png')}
         ></Image>
         <Text style={styles.buttonText}>Log in with</Text>
       </Pressable>
@@ -40,31 +45,32 @@ export default function LoginButton(props) {
 
 const styles = StyleSheet.create({
   view: {
-    margin: "auto",
-    width: Dimensions.get("window").width,
+    margin: 'auto',
   },
   buttonText: {
-    fontSize: 50,
-    textAlign: "center",
-    margin: "auto",
+    fontSize: moderateScale(20),
+    textAlign: 'center',
+    margin: 'auto',
   },
   button: {
-    width: Dimensions.get("window").width / 1.5,
-    margin: "auto",
-    backgroundColor: "#f5f5f5",
-    padding: 40,
-    borderRadius: 25,
-    display: "flex",
-    flexDirection: "row-reverse",
+    width: horizontalScale(275),
+    height: verticalScale(100),
+    margin: 'auto',
+    backgroundColor: '#f5f5f5',
+    padding: moderateScale(20),
+    borderRadius: moderateScale(15),
+    display: 'flex',
+    flexDirection: 'row-reverse',
   },
   errorMessage: {
-    margin: "auto",
-    marginTop: 60,
-    color: "red",
-    fontSize: 45,
+    margin: 'auto',
+    marginTop: verticalScale(15),
+    color: 'red',
+    fontSize: moderateScale(18),
   },
   img: {
-    resizeMode: "center",
-    margin: "auto",
+    maxWidth: horizontalScale(110),
+    resizeMode: 'center',
+    margin: 'auto',
   },
 });
