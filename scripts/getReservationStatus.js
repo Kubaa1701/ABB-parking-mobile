@@ -9,7 +9,7 @@ export default async function getReservationStatus() {
       },
       body: JSON.stringify({
         id: '1',
-        day: '13',
+        day: '1',
         month: '12',
       }),
     }

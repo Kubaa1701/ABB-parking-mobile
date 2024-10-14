@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        width: Dimensions.get('window').width / 6,
-        fontSize: 30,
+        width: Dimensions.get('window').width / 7,
+        fontSize: Dimensions.get('window').width * 0.05,
         margin: 5,
       },
     }),
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 });
