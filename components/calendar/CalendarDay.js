@@ -47,6 +47,7 @@ export default function CalendarDay(props) {
       <View>
         <Pressable
           style={styles.dayText}
+          disabled={dayOfMonth < props.today}
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -56,12 +57,13 @@ export default function CalendarDay(props) {
               styles.day,
               statusName === 'Potwierdzony' && styles.potwierdzony,
               statusName === 'Oczekujący' && styles.oczekujacy,
+              dayOfMonth < Number(props.today) && styles.previousDate,
             ]}
           >
             <Text
               style={[
                 styles.dayText,
-                dayOfMonth <= Number(props.today) && styles.previousDate,
+                dayOfMonth === Number(props.today) && styles.today,
               ]}
             >
               {dayOfMonth}
@@ -91,8 +93,8 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 8,
       },
       default: {
-        height: Dimensions.get('window').width / 6,
-        width: Dimensions.get('window').width / 6,
+        height: Dimensions.get('window').width / 7,
+        width: Dimensions.get('window').width / 7,
         margin: 5,
       },
     }),
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        fontSize: 30,
+        fontSize: 24,
       },
     }),
     margin: 'auto',
@@ -120,6 +122,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#e8c354',
   },
   previousDate: {
-    color: '#b8b8b8',
+    opacity: '40%',
+  },
+  today: {
+    color: '#faf7f0',
   },
 });

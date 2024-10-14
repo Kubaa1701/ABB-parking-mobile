@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 
 export default function DayModal(props) {
@@ -27,9 +27,11 @@ export default function DayModal(props) {
 const styles = StyleSheet.create({
   modalView: {
     backgroundColor: '#E9E9E9',
-    height: '40%',
+    height: '45%',
     width: '100%',
     bottom: 0,
     position: 'absolute',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });

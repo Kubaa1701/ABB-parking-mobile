@@ -29,6 +29,11 @@ function getCurrentDay() {
   return today.getDate();
 }
 
+function getCurrentMonth() {
+  const today = new Date();
+  return today.toLocaleString('default', { month: 'long' });
+}
+
 export default function Calendar() {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
@@ -40,9 +45,16 @@ export default function Calendar() {
     });
   }, []);
   return (
-    <View style={{ width: '100%', backgroundColor: '#D9D9D9' }}>
+    <View
+      style={{ width: '100%', backgroundColor: '#D9D9D9', paddingBottom: 10 }}
+    >
       {result ? (
         <View style={{ margin: 'auto', marginTop: 20 }}>
+          <Text
+            style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}
+          >
+            {getCurrentMonth()}
+          </Text>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>
             {day.map((e) => (

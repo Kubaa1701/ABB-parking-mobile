@@ -1,10 +1,20 @@
-import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import Calendar from '@/components/calendar/Calendar';
+import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
+import Status from '@/components/calendar/Status';
 
 export default function Index() {
   return (
-    <View style={{ backgroundColor: '#E9E9E9' }}>
+    <ScrollView
+      style={{
+        backgroundColor: '#E9E9E9',
+      }}
+    >
       <Calendar />
-    </View>
+      <Status />
+      <Status />
+      <Status />
+      <MakeReservationBtn />
+    </ScrollView>
   );
 }
