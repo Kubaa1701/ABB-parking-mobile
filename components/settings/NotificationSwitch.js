@@ -1,30 +1,21 @@
-import React, { useState } from "react";
-import { View, Switch, Text, Dimensions } from "react-native";
+import React, { useState } from 'react';
+import { View, Switch, Text, StyleSheet } from 'react-native';
+import {
+  horizontalScale,
+  verticalScale,
+  moderateScale,
+} from '@/styles/metrics';
 
 export default function NotificationSwitch() {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
-    <View style={{}}>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginTop: 10,
-          marginBottom: 10,
-          marginLeft: "5%",
-        }}
-      >
-        <Text
-          style={{
-            width: Dimensions.get("window").width / 2.8,
-            fontWeight: "bold",
-          }}
-        >
-          Turn notifications off
-        </Text>
+    <View>
+      <View style={styles.view}>
+        <Text style={styles.text}>Turn notifications off</Text>
         <Switch
-          trackColor={{ false: "#aab2bf", true: "#4287f5" }}
-          thumbColor={isEnabled ? "white" : "white"}
+          style={styles.switch}
+          trackColor={{ false: '#aab2bf', true: '#4287f5' }}
+          thumbColor={isEnabled ? 'white' : 'white'}
           onValueChange={() => setIsEnabled(!isEnabled)}
           value={isEnabled}
         />
@@ -32,3 +23,22 @@ export default function NotificationSwitch() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  view: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: verticalScale(10),
+    marginBottom: verticalScale(10),
+    marginLeft: horizontalScale(20),
+  },
+  text: {
+    fontSize: moderateScale(18),
+    width: horizontalScale(200),
+    fontWeight: 'bold',
+  },
+  switch: {
+    transform: [{ scaleX: moderateScale(1) }, { scaleY: moderateScale(1) }],
+    margin: 'auto',
+  },
+});
