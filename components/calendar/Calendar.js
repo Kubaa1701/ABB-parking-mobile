@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import CalendarDay from './CalendarDay';
 import { date, format, getDaysInMonth, getISODay } from 'date-fns';
 import { useState, useEffect } from 'react';
@@ -24,18 +24,41 @@ function createDaysTable() {
   return weekdayTab;
 }
 
+function getCurrentDay() {
+  const today = new Date();
+  return today.getDate();
+}
+
+function getCurrentMonth() {
+  const today = new Date();
+  return today.toLocaleString('default', { month: 'long' });
+}
+
 export default function Calendar() {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
   useEffect(() => {
     getReservationStatus().then((e) => {
-      setResult(e.result);
+      if (e.result) {
+        setResult(e.result);
+      }
     });
   }, []);
   return (
-    <View style={{ width: '100%', backgroundColor: '#D9D9D9' }}>
-      {result.length !== 0 ? (
+    <View
+      style={{ width: '100%', backgroundColor: '#D9D9D9', paddingBottom: 10 }}
+    >
+      {result ? (
         <View style={{ margin: 'auto', marginTop: 20 }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: Dimensions.get('window').width * 0.05,
+              fontWeight: 'bold',
+            }}
+          >
+            {getCurrentMonth()}
+          </Text>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>
             {day.map((e) => (
@@ -44,6 +67,7 @@ export default function Calendar() {
                 dayOfMonth={e[0]}
                 dayOfWeek={e[1]}
                 lastDayOfMonth={day[day.length - 1][0]}
+                today={getCurrentDay()}
                 status={result}
               />
             ))}

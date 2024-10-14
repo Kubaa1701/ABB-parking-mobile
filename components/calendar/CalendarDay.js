@@ -24,7 +24,6 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 export default function CalendarDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [modalVisible, setModalVisible] = useState(false);
-  const [status, setStatus] = useState('');
   let statusName = '';
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
@@ -34,20 +33,21 @@ export default function CalendarDay(props) {
     }
     return null;
   };
-  function checkReservationStatus(dayOfMonth) {
+  function checkReservationStatus() {
     props.status.forEach((e) => {
       if (e.day === dayOfMonth) {
         statusName = e.status;
       }
     });
   }
-  checkReservationStatus(dayOfMonth);
+  checkReservationStatus();
   return (
     <React.Fragment>
       {renderEmptyDates()}
       <View>
         <Pressable
           style={styles.dayText}
+          disabled={dayOfMonth < props.today}
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -57,14 +57,23 @@ export default function CalendarDay(props) {
               styles.day,
               statusName === 'Potwierdzony' && styles.potwierdzony,
               statusName === 'Oczekujący' && styles.oczekujacy,
+              dayOfMonth < Number(props.today) && styles.previousDate,
             ]}
           >
-            <Text style={styles.dayText}>{dayOfMonth}</Text>
+            <Text
+              style={[
+                styles.dayText,
+                dayOfMonth === Number(props.today) && styles.today,
+              ]}
+            >
+              {dayOfMonth}
+            </Text>
           </View>
         </Pressable>
         <DayModal
           visible={modalVisible}
           setVisible={setModalVisible}
+          status={statusName}
         />
       </View>
       {dayOfWeek === 5 && <Text>{'\n'}</Text>}
@@ -84,8 +93,8 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width / 8,
       },
       default: {
-        height: Dimensions.get('window').width / 6,
-        width: Dimensions.get('window').width / 6,
+        height: Dimensions.get('window').width / 7,
+        width: Dimensions.get('window').width / 7,
         margin: 5,
       },
     }),
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        fontSize: 30,
+        fontSize: Dimensions.get('window').width * 0.05,
       },
     }),
     margin: 'auto',
@@ -111,5 +120,11 @@ const styles = StyleSheet.create({
   },
   oczekujacy: {
     backgroundColor: '#e8c354',
+  },
+  previousDate: {
+    opacity: '40%',
+  },
+  today: {
+    color: '#faf7f0',
   },
 });
