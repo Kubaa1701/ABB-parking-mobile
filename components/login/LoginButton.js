@@ -8,6 +8,11 @@ import {
   Image,
 } from 'react-native';
 import getLoginLink from '@/components/login/getLoginLink';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 export default function LoginButton(props) {
   return (
@@ -41,29 +46,30 @@ export default function LoginButton(props) {
 const styles = StyleSheet.create({
   view: {
     margin: 'auto',
-    width: Dimensions.get('window').width,
   },
   buttonText: {
-    fontSize: 50,
+    fontSize: moderateScale(20),
     textAlign: 'center',
     margin: 'auto',
   },
   button: {
-    width: Dimensions.get('window').width / 1.5,
+    width: horizontalScale(275),
+    height: verticalScale(100),
     margin: 'auto',
     backgroundColor: '#f5f5f5',
-    padding: 40,
-    borderRadius: 25,
+    padding: moderateScale(20),
+    borderRadius: moderateScale(15),
     display: 'flex',
     flexDirection: 'row-reverse',
   },
   errorMessage: {
     margin: 'auto',
-    marginTop: 60,
+    marginTop: verticalScale(15),
     color: 'red',
-    fontSize: 45,
+    fontSize: moderateScale(18),
   },
   img: {
+    maxWidth: horizontalScale(110),
     resizeMode: 'center',
     margin: 'auto',
   },
