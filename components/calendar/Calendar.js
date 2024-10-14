@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import CalendarDay from './CalendarDay';
 import { date, format, getDaysInMonth, getISODay } from 'date-fns';
 import { useState, useEffect } from 'react';
@@ -51,7 +51,11 @@ export default function Calendar() {
       {result ? (
         <View style={{ margin: 'auto', marginTop: 20 }}>
           <Text
-            style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}
+            style={{
+              textAlign: 'center',
+              fontSize: Dimensions.get('window').width * 0.05,
+              fontWeight: 'bold',
+            }}
           >
             {getCurrentMonth()}
           </Text>

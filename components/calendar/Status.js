@@ -1,17 +1,31 @@
-import { View, Text } from 'react-native-web';
+import { View, Text, Dimensions } from 'react-native-web';
 
-export default function Status() {
+export default function Status(props) {
   return (
-    <View style={{ display: 'flex', flexDirection: 'row', margin: 5 }}>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '5%',
+        marginLeft: 10,
+      }}
+    >
       <View
         style={{
-          width: 40,
-          height: 40,
+          width: Dimensions.get('window').width * 0.08,
+          height: Dimensions.get('window').width * 0.08,
           borderRadius: 100,
-          backgroundColor: 'black',
+          backgroundColor: props.color,
         }}
       />
-      <Text style={{ fontSize: 24, margin: 5 }}>status</Text>
+      <Text
+        style={{
+          fontSize: Dimensions.get('window').width * 0.04,
+          margin: '1%',
+        }}
+      >
+        {props.status}
+      </Text>
     </View>
   );
 }

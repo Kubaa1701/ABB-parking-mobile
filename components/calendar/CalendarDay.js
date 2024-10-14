@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
       },
       default: {
-        fontSize: 24,
+        fontSize: Dimensions.get('window').width * 0.05,
       },
     }),
     margin: 'auto',
