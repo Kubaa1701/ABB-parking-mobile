@@ -1,4 +1,4 @@
-export default async function sendData(endpoint, data) {
+export default async function sendData(endpoint, userData) {
   const url = 'http://localhost:5000/' + endpoint;
   try {
     const response = fetch(url, {
@@ -7,7 +7,7 @@ export default async function sendData(endpoint, data) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userData),
     });
     const data = (await response).json();
     return data;
