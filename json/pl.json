@@ -1,0 +1,75 @@
+{
+  "messages": {
+    "reservation": {
+      "success": {
+        "success": {
+          "beginning": "Rezerwacja na dzień ",
+          "continuation": " powiodła się, i jej aktualny stan to ",
+          "ending": "."
+        }
+      },
+      "error": {
+        "past_date": {
+          "beginning": "Rezerwacja na dzień ",
+          "ending": " nie powiodła się, z uwagi na wybranie przeszłej daty."
+        },
+        "too_late": {
+          "beginning": "Rezerwacje na dzień ",
+          "ending": " są już zamknięte, przepraszamy."
+        },
+        "already_made": {
+          "beginning": "Zrobiłeś już rezerwację na dzień ",
+          "ending": "."
+        },
+        "something_went_wrong": {
+          "beginning": "Coś poszło nie tak przy rezerwacji na dzień ",
+          "ending": "."
+        }
+      }
+    },
+    "login": {
+      "error": "Mieliśmy problem z zalogowaniem Cię."
+    }
+  },
+  "calendar": {
+    "month_names": {
+      "1": "Styczeń",
+      "2": "Luty",
+      "3": "Marzec",
+      "4": "Kwiecień",
+      "5": "Maj",
+      "6": "Czerwiec",
+      "7": "Lipiec",
+      "8": "Sierpień",
+      "9": "Wrzesień",
+      "10": "Październik",
+      "11": "Listopad",
+      "12": "Grudzień"
+    },
+    "weekdays_names": {
+      "1": "Pon",
+      "2": "Wt",
+      "3": "Śr",
+      "4": "Czw",
+      "5": "Pt"
+    }
+  },
+  "statuses": {
+    "approved": "Potwierdzony",
+    "pending": "Oczekujący",
+    "rejected": "Odrzucony"
+  },
+  "text": {
+    "sign_in": "Zaloguj się przez",
+    "make_reservation": "Zarezerwuj",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "logout": "Wyloguj się",
+    "notification": "Wyłącz powiadomienia",
+    "free_spaces": "Wolne miejsca"
+  },
+  "nav_bar": {
+    "home": "Strona główna",
+    "settings": "Ustawienia"
+  }
+}
