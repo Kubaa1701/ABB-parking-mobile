@@ -1,46 +1,47 @@
-import { ScrollView, View, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native';
 import Calendar from '@/components/calendar/Calendar';
-import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
-import Status from '@/components/calendar/Status';
+import StatusView from '@/components/calendar/StatusView';
+import React, { useState } from 'react';
+import CalendarBtnView from '@/components/calendar/CalendarBtnView';
+import CancelBtn from '@/components/reservation/CancelBtn';
+import ConfirmBtn from '@/components/reservation/ConfirmBtn';
 
 export default function Index() {
+  const [pickedDates, setPickedDates] = useState([]);
+  const [displayReservation, setDisplayReservation] = useState(false);
   return (
     <ScrollView
       style={{
         backgroundColor: '#E9E9E9',
       }}
     >
-      <Calendar />
-      <View style={{ marginTop: '5%' }}>
-        <Status
-          color={'#63cf79'}
-          status={'Approved'}
-        />
-        <Status
-          color={'#e8c354'}
-          status={'Pending'}
-        />
-        <Status
-          color={'#EF8787'}
-          status={'Rejected'}
-        />
-      </View>
-      <View
-        style={{
-          width: '50%',
-          backgroundColor: '#707070',
-          height: '12%',
-          borderRadius: 20,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          left: '25%',
-          position: 'absolute',
-          bottom: -Dimensions.get('window').height / 6,
-        }}
-      >
-        <MakeReservationBtn />
-      </View>
+      <Calendar
+        key={displayReservation ? 'reservation' : 'calendar'}
+        displayReservation={displayReservation}
+        setDisplayReservation={setDisplayReservation}
+        pickedDates={pickedDates}
+      />
+      {!displayReservation ? (
+        <React.Fragment>
+          <StatusView />
+          <CalendarBtnView
+            displayReservation={displayReservation}
+            setDisplayReservation={setDisplayReservation}
+          />
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <CancelBtn
+            setDisplayReservation={setDisplayReservation}
+            setPickedDates={setPickedDates}
+          />
+          <ConfirmBtn
+            data={pickedDates}
+            setDisplayReservation={setDisplayReservation}
+            setPickedDates={setPickedDates}
+          />
+        </React.Fragment>
+      )}
     </ScrollView>
   );
 }

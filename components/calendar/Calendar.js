@@ -1,9 +1,12 @@
 import { View, Text, Dimensions } from 'react-native';
 import CalendarDay from './CalendarDay';
+import ReservationDay from '../reservation/ReservationDay';
 import { getDaysInMonth, getISODay } from 'date-fns';
 import { useState, useEffect } from 'react';
 import sendData from '@/scripts/sendData';
 import Days from './Days';
+import React from 'react';
+import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function createDaysTable() {
   const today = new Date();
@@ -24,24 +27,19 @@ function createDaysTable() {
   return weekdayTab;
 }
 
-function getCurrentDay() {
-  const today = new Date();
-  return today.getDate();
-}
-
-function getCurrentMonth() {
+function getCurrentMonthName() {
   const today = new Date();
   return today.toLocaleString('default', { month: 'long' });
 }
 
-export default function Calendar() {
+export default function Calendar(props) {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
   useEffect(() => {
     sendData('user/post/receiveReservationDate', {
-      id: '1',
+      id: '3',
       day: '1',
-      month: '12',
+      month: '10',
     }).then((e) => {
       if (e.result) {
         setResult(e.result);
@@ -57,23 +55,38 @@ export default function Calendar() {
           <Text
             style={{
               textAlign: 'center',
-              fontSize: Dimensions.get('window').width * 0.05,
+              fontSize: Dimensions.get('window').width * 0.08,
               fontWeight: 'bold',
             }}
           >
-            {getCurrentMonth()}
+            {getCurrentMonthName()}
           </Text>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>
-            {day.map((e) => (
-              <CalendarDay
-                key={e[0]}
-                dayOfMonth={e[0]}
-                dayOfWeek={e[1]}
-                lastDayOfMonth={day[day.length - 1][0]}
-                today={getCurrentDay()}
-                status={result}
-              />
+            {day.map((e, index) => (
+              <React.Fragment key={index}>
+                {!props.displayReservation ? (
+                  <CalendarDay
+                    key={index}
+                    dayOfMonth={e[0]}
+                    dayOfWeek={e[1]}
+                    lastDayOfMonth={day[day.length - 1][0]}
+                    today={getCurrentDay()}
+                    status={result}
+                    displayReservation={props.displayReservation}
+                    setDisplayReservation={props.setDisplayReservation}
+                  />
+                ) : (
+                  <ReservationDay
+                    key={e[0]}
+                    dayOfMonth={e[0]}
+                    dayOfWeek={e[1]}
+                    lastDayOfMonth={day[day.length - 1][0]}
+                    today={getCurrentDay()}
+                    pickedDates={props.pickedDates}
+                  />
+                )}
+              </React.Fragment>
             ))}
           </Text>
         </View>

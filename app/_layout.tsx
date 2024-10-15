@@ -1,12 +1,12 @@
 import { Stack } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import findUser from '@/components/login/findUser';
+import getData from '@/scripts/getData';
 import LoginScreen from '@/components/login/LoginScreen';
 
 export default function RootLayout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    findUser().then((result) => {
+    getData('user/oauth/findUser').then((result) => {
       setIsLoggedIn(result['isLoggedIn']);
     });
   });
