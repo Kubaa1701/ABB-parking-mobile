@@ -1,16 +1,7 @@
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
-
-function getCurrentMonth() {
-  const today = new Date();
-  const currentMonth = String(today.getMonth() + 1);
-  if (currentMonth.length < 2) {
-    return '0' + currentMonth;
-  } else {
-    return currentMonth;
-  }
-}
+import getCurrentMonth from '@/scripts/getCurrentMonth';
 
 export default function DayModal(props) {
   return (

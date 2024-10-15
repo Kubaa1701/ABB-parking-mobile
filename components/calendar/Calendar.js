@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import sendData from '@/scripts/sendData';
 import Days from './Days';
 import React from 'react';
+import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function createDaysTable() {
   const today = new Date();
@@ -26,11 +27,6 @@ function createDaysTable() {
   return weekdayTab;
 }
 
-function getCurrentDay() {
-  const today = new Date();
-  return today.getDate();
-}
-
 function getCurrentMonthName() {
   const today = new Date();
   return today.toLocaleString('default', { month: 'long' });
@@ -39,12 +35,11 @@ function getCurrentMonthName() {
 export default function Calendar(props) {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
-  const [pickedDates, setPickedDates] = useState([]);
   useEffect(() => {
     sendData('user/post/receiveReservationDate', {
-      id: '1',
+      id: '3',
       day: '1',
-      month: '12',
+      month: '10',
     }).then((e) => {
       if (e.result) {
         setResult(e.result);
@@ -88,7 +83,7 @@ export default function Calendar(props) {
                     dayOfWeek={e[1]}
                     lastDayOfMonth={day[day.length - 1][0]}
                     today={getCurrentDay()}
-                    pickedDates={pickedDates}
+                    pickedDates={props.pickedDates}
                   />
                 )}
               </React.Fragment>
