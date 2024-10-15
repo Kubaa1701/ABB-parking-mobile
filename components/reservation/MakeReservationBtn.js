@@ -1,8 +1,10 @@
 import { Text, Pressable, Dimensions } from 'react-native';
 
-export default function MakeReservationBtn() {
+export default function MakeReservationBtn(props) {
   return (
-    <Pressable>
+    <Pressable
+      onPress={() => props.setDisplayReservation(!props.displayReservation)}
+    >
       <Text
         style={{
           fontSize: Dimensions.get('screen').width * 0.05,

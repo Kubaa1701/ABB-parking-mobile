@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 import React from 'react';
-import EmptyDate from './EmptyDate';
-import DayModal from './DayModal';
+import EmptyDate from '../calendar/EmptyDate';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -21,10 +20,10 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   return lastMonth;
 }
 
-export default function CalendarDay(props) {
+export default function ReservationDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
-  const [modalVisible, setModalVisible] = useState(false);
-  let statusName = '';
+  const [picked, setPicked] = useState(false);
+
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
       return calculateEmptyDates(dayOfMonth, dayOfWeek).map((e, index) => (
@@ -33,32 +32,31 @@ export default function CalendarDay(props) {
     }
     return null;
   };
-  function checkReservationStatus() {
-    props.status.forEach((e) => {
-      if (e.day === dayOfMonth) {
-        statusName = e.status;
-      }
-    });
-  }
-  checkReservationStatus();
   return (
     <React.Fragment>
       {renderEmptyDates()}
       <View>
         <Pressable
           style={styles.dayText}
-          disabled={dayOfMonth < props.today}
+          disabled={dayOfMonth <= props.today}
           onPress={() => {
-            setModalVisible(!modalVisible);
+            setPicked(!picked);
+            if (!picked) {
+              props.pickedDates.push(dayOfMonth);
+            } else {
+              props.pickedDates.splice(
+                props.pickedDates.indexOf(dayOfMonth),
+                1
+              );
+            }
+            console.log(props.pickedDates);
           }}
         >
           <View
             style={[
               styles.day,
-              statusName === 'Approved' && styles.approved,
-              statusName === 'Pending' && styles.pending,
-              statusName === 'Rejected' && styles.rejected,
               dayOfMonth < Number(props.today) && styles.previousDate,
+              picked && styles.picked,
             ]}
           >
             <Text
@@ -71,14 +69,6 @@ export default function CalendarDay(props) {
             </Text>
           </View>
         </Pressable>
-        <DayModal
-          visible={modalVisible}
-          setVisible={setModalVisible}
-          status={statusName}
-          dayOfMonth={dayOfMonth}
-          displayReservation={props.displayReservation}
-          setDisplayReservation={props.setDisplayReservation}
-        />
       </View>
       {dayOfWeek === 5 && <Text>{'\n'}</Text>}
     </React.Fragment>
@@ -104,14 +94,13 @@ const styles = StyleSheet.create({
     }),
     borderRadius: 100,
   },
-  //TODO: fontSize dependent on window width
   dayText: {
     ...Platform.select({
       android: {
-        fontSize: 20,
+        fontSize: Dimensions.get('window').width * 0.05,
       },
       ios: {
-        fontSize: 20,
+        fontSize: Dimensions.get('window').width * 0.05,
       },
       default: {
         fontSize: Dimensions.get('window').width * 0.05,
@@ -119,19 +108,13 @@ const styles = StyleSheet.create({
     }),
     margin: 'auto',
   },
-  approved: {
-    backgroundColor: '#63cf79',
-  },
-  pending: {
-    backgroundColor: '#e8c354',
-  },
-  rejected: {
-    backgroundColor: '#EF8787',
-  },
   previousDate: {
     opacity: '40%',
   },
   today: {
     color: '#faf7f0',
+  },
+  picked: {
+    backgroundColor: '#4fabd6',
   },
 });

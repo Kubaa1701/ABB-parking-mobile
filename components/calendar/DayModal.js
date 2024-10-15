@@ -57,7 +57,10 @@ export default function DayModal(props) {
                 bottom: '10%',
               }}
             >
-              <MakeReservationBtn />
+              <MakeReservationBtn
+                displayReservation={props.displayReservation}
+                setDisplayReservation={props.setDisplayReservation}
+              />
             </View>
           ) : (
             ''
