@@ -5,8 +5,8 @@ export default function MakeReservationBtn() {
     <Pressable>
       <Text
         style={{
-          fontSize: Dimensions.get('window').width * 0.05,
-          fontWeight: '400',
+          fontSize: Dimensions.get('screen').width * 0.05,
+          // fontWeight: '400',
           color: '#faf7f0',
         }}
       >

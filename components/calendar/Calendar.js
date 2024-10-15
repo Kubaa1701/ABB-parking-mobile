@@ -29,7 +29,7 @@ function getCurrentDay() {
   return today.getDate();
 }
 
-function getCurrentMonth() {
+function getCurrentMonthName() {
   const today = new Date();
   return today.toLocaleString('default', { month: 'long' });
 }
@@ -57,11 +57,11 @@ export default function Calendar() {
           <Text
             style={{
               textAlign: 'center',
-              fontSize: Dimensions.get('window').width * 0.05,
+              fontSize: Dimensions.get('window').width * 0.08,
               fontWeight: 'bold',
             }}
           >
-            {getCurrentMonth()}
+            {getCurrentMonthName()}
           </Text>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>

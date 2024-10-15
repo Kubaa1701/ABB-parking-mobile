@@ -1,6 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
+
+function getCurrentMonth() {
+  const today = new Date();
+  const currentMonth = String(today.getMonth() + 1);
+  if (currentMonth.length < 2) {
+    return '0' + currentMonth;
+  } else {
+    return currentMonth;
+  }
+}
 
 export default function DayModal(props) {
   return (
@@ -16,7 +26,21 @@ export default function DayModal(props) {
         style={{ margin: 0 }}
       >
         <View style={styles.modalView}>
-          <Text style={{ margin: 'auto', fontSize: 30 }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: Dimensions.get('window').width * 0.08,
+              marginTop: Dimensions.get('window').height * 0.02,
+            }}
+          >
+            {props.dayOfMonth + '.' + getCurrentMonth()}
+          </Text>
+          <Text
+            style={{
+              margin: 'auto',
+              fontSize: Dimensions.get('window').width * 0.07,
+            }}
+          >
             {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
           </Text>
           {props.status.length === 0 ? (
@@ -24,7 +48,7 @@ export default function DayModal(props) {
               style={{
                 width: '50%',
                 backgroundColor: '#707070',
-                height: '12%',
+                height: '20%',
                 borderRadius: 20,
                 display: 'flex',
                 alignItems: 'center',

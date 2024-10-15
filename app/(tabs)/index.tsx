@@ -36,7 +36,7 @@ export default function Index() {
           justifyContent: 'center',
           left: '25%',
           position: 'absolute',
-          bottom: -Dimensions.get('window').height / 6,
+          bottom: -Dimensions.get('window').height / 5,
         }}
       >
         <MakeReservationBtn />
