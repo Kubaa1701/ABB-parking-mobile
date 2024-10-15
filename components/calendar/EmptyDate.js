@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
+import { horizontalScale } from '@/styles/metrics';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function EmptyDate(props) {
   return (
@@ -10,16 +11,6 @@ export default function EmptyDate(props) {
 
 const styles = StyleSheet.create({
   emptyDate: {
-    ...Platform.select({
-      android: {
-        width: Dimensions.get('window').width / 6,
-      },
-      ios: {
-        width: Dimensions.get('window').width / 8,
-      },
-      default: {
-        width: Dimensions.get('window').width / 8 + 10,
-      },
-    }),
+    width: horizontalScale(70),
   },
 });

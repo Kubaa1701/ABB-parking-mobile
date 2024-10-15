@@ -1,6 +1,11 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 function getCurrentMonth() {
   const today = new Date();
@@ -26,37 +31,14 @@ export default function DayModal(props) {
         style={{ margin: 0 }}
       >
         <View style={styles.modalView}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: Dimensions.get('window').width * 0.08,
-              marginTop: Dimensions.get('window').height * 0.02,
-            }}
-          >
+          <Text style={styles.modalDate}>
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <Text
-            style={{
-              margin: 'auto',
-              fontSize: Dimensions.get('window').width * 0.07,
-            }}
-          >
+          <Text style={styles.modalStatus}>
             {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
           </Text>
           {props.status.length === 0 ? (
-            <View
-              style={{
-                width: '50%',
-                backgroundColor: '#707070',
-                height: '20%',
-                borderRadius: 20,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                left: '25%',
-                bottom: '10%',
-              }}
-            >
+            <View style={styles.buttonView}>
               <MakeReservationBtn
                 displayReservation={props.displayReservation}
                 setDisplayReservation={props.setDisplayReservation}
@@ -78,7 +60,26 @@ const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
     position: 'absolute',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: horizontalScale(20),
+    borderTopRightRadius: horizontalScale(20),
+  },
+  modalDate: {
+    textAlign: 'center',
+    fontSize: moderateScale(32),
+    marginTop: verticalScale(20),
+  },
+  modalStatus: {
+    margin: 'auto',
+    fontSize: moderateScale(28),
+  },
+  buttonView: {
+    width: '50%',
+    backgroundColor: '#707070',
+    height: '20%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: '25%',
+    bottom: '10%',
   },
 });
