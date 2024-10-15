@@ -12,9 +12,7 @@ export default function ConfirmBtn(props) {
           month: getCurrentMonth(),
           user_id: 3,
           dates: props.data,
-        });
-        ('');
-        props.setDisplayReservation(false);
+        }).then(() => props.setDisplayReservation(false));
         props.setPickedDates([]);
       }}
     >
