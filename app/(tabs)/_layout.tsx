@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React from 'react';
-import { horizontalScale, moderateScale, verticalScale } from '@/styles/metrics';
+import { moderateScale, verticalScale } from '@/styles/metrics';
 
 export default function TabsLayout() {
   return (

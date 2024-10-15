@@ -4,10 +4,9 @@ import {
   Pressable,
   Linking,
   StyleSheet,
-  Dimensions,
   Image,
 } from 'react-native';
-import getLoginLink from '@/components/login/getLoginLink';
+import getData from '@/scripts/getData';
 import {
   horizontalScale,
   moderateScale,
@@ -20,7 +19,7 @@ export default function LoginButton(props) {
       <Pressable
         style={styles.button}
         onPress={() => {
-          getLoginLink().then((result) => {
+          getData('user/oauth/getLoginLink').then((result) => {
             Linking.openURL(result['link']);
             props.setRedirected(true);
           });

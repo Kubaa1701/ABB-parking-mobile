@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Dimensions } from 'react-native';
+import { Text, Pressable, Dimensions } from 'react-native';
 
 export default function MakeReservationBtn() {
   return (

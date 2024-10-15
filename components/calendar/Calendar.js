@@ -1,8 +1,8 @@
 import { View, Text, Dimensions } from 'react-native';
 import CalendarDay from './CalendarDay';
-import { date, format, getDaysInMonth, getISODay } from 'date-fns';
+import { getDaysInMonth, getISODay } from 'date-fns';
 import { useState, useEffect } from 'react';
-import getReservationStatus from '@/scripts/getReservationStatus';
+import sendData from '@/scripts/sendData';
 import Days from './Days';
 
 function createDaysTable() {
@@ -38,7 +38,11 @@ export default function Calendar() {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
   useEffect(() => {
-    getReservationStatus().then((e) => {
+    sendData('user/post/receiveReservationDate', {
+      id: '1',
+      day: '1',
+      month: '12',
+    }).then((e) => {
       if (e.result) {
         setResult(e.result);
       }

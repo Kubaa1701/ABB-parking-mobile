@@ -1,5 +1,5 @@
-import { View, Text, Pressable, StyleSheet, Dimensions } from 'react-native';
-import findUser from '@/components/login/findUser';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+import getData from '@/scripts/getData';
 import {
   horizontalScale,
   moderateScale,
@@ -12,7 +12,7 @@ export default function ContinueButton(props) {
       <Pressable
         style={styles.button}
         onPress={() => {
-          findUser().then((result) => {
+          getData('user/oauth/findUser').then((result) => {
             props.setIsLoggedIn(result['isLoggedIn']);
             if (!result['isLoggedIn']) {
               props.setRedirected(false);

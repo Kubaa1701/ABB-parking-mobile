@@ -4,7 +4,7 @@ import {
   verticalScale,
   moderateScale,
 } from '@/styles/metrics';
-import LogOut from './LogOut';
+import getData from '@/scripts/getData';
 
 export default function LogOutButton() {
   return (
@@ -12,7 +12,7 @@ export default function LogOutButton() {
       <Pressable
         style={styles.button}
         onPress={() => {
-          LogOut();
+          getData('user/oauth/getLogoutLink');
         }}
       >
         <Text style={styles.buttonText}>Log Out</Text>

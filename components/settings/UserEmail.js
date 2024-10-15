@@ -1,12 +1,12 @@
 import { Text, View, StyleSheet } from 'react-native-web';
 import { useState, useEffect } from 'react';
 import { moderateScale, verticalScale } from '@/styles/metrics';
-import getUserData from '@/components/login/getUserData';
+import getData from '@/scripts/getData';
 
 export default function UserEmail() {
   const [email, setEmail] = useState('');
   useEffect(() => {
-    getUserData().then((result) => {
+    getData('user/oauth/getUserData').then((result) => {
       setEmail(result.result.mail);
     });
   }, []);
