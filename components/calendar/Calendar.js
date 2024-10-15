@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react';
 import sendData from '@/scripts/sendData';
 import Days from './Days';
 import { moderateScale, verticalScale } from '@/styles/metrics';
-import React from 'react';
 import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function createDaysTable() {
