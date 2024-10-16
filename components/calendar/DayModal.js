@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
+import getCurrentDay from '@/scripts/getCurrnetDay';
 
 export default function DayModal(props) {
   return (
@@ -34,7 +35,7 @@ export default function DayModal(props) {
           >
             {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
           </Text>
-          {props.status.length === 0 ? (
+          {props.status.length === 0 && props.dayOfMonth !== getCurrentDay() ? (
             <View
               style={{
                 width: '50%',
@@ -51,6 +52,8 @@ export default function DayModal(props) {
               <MakeReservationBtn
                 displayReservation={props.displayReservation}
                 setDisplayReservation={props.setDisplayReservation}
+                day={props.dayOfMonth}
+                setPickedDate={props.setPickedDate}
               />
             </View>
           ) : (

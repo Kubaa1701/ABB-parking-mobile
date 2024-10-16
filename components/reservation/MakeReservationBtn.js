@@ -3,7 +3,9 @@ import { Text, Pressable, Dimensions } from 'react-native';
 export default function MakeReservationBtn(props) {
   return (
     <Pressable
-      onPress={() => props.setDisplayReservation(!props.displayReservation)}
+      onPress={() => {
+        props.setDisplayReservation(!props.displayReservation);
+      }}
     >
       <Text
         style={{

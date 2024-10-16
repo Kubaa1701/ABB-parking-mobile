@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import sendData from '@/scripts/sendData';
 import Days from './Days';
 import React from 'react';
-import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function createDaysTable() {
   const today = new Date();
@@ -46,6 +45,7 @@ export default function Calendar(props) {
       }
     });
   }, []);
+
   return (
     <View
       style={{ width: '100%', backgroundColor: '#D9D9D9', paddingBottom: 10 }}
@@ -71,10 +71,10 @@ export default function Calendar(props) {
                     dayOfMonth={e[0]}
                     dayOfWeek={e[1]}
                     lastDayOfMonth={day[day.length - 1][0]}
-                    today={getCurrentDay()}
                     status={result}
                     displayReservation={props.displayReservation}
                     setDisplayReservation={props.setDisplayReservation}
+                    setPickedDate={props.setPickedDate}
                   />
                 ) : (
                   <ReservationDay
@@ -82,8 +82,8 @@ export default function Calendar(props) {
                     dayOfMonth={e[0]}
                     dayOfWeek={e[1]}
                     lastDayOfMonth={day[day.length - 1][0]}
-                    today={getCurrentDay()}
                     pickedDates={props.pickedDates}
+                    pickedDate={props.pickedDate}
                   />
                 )}
               </React.Fragment>
