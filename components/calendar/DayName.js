@@ -12,7 +12,7 @@ export default function DayName(props) {
 const styles = StyleSheet.create({
   text: {
     height: verticalScale(30),
-    width: horizontalScale(70),
+    width: horizontalScale(60),
     fontSize: moderateScale(22),
     textAlign: 'center',
     fontWeight: '500',

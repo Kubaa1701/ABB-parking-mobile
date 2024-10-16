@@ -11,6 +11,6 @@ export default function EmptyDate(props) {
 
 const styles = StyleSheet.create({
   emptyDate: {
-    width: horizontalScale(70),
+    width: horizontalScale(60),
   },
 });

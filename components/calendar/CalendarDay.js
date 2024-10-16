@@ -84,12 +84,12 @@ export default function CalendarDay(props) {
 
 const styles = StyleSheet.create({
   day: {
-    height: verticalScale(70),
-    width: horizontalScale(70),
+    height: verticalScale(60),
+    width: horizontalScale(60),
     borderRadius: 100,
   },
   dayText: {
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(24),
     margin: 'auto',
   },
   approved: {

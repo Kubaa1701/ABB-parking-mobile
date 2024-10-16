@@ -1,14 +1,12 @@
-import {
-  View,
-  Pressable,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Platform,
-} from 'react-native';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import React from 'react';
-import EmptyDate from '../calendar/EmptyDate';
+import EmptyDate from '@/components/calendar/EmptyDate';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -77,35 +75,12 @@ export default function ReservationDay(props) {
 
 const styles = StyleSheet.create({
   day: {
-    ...Platform.select({
-      android: {
-        height: Dimensions.get('window').width / 6,
-        width: Dimensions.get('window').width / 6,
-      },
-      ios: {
-        height: Dimensions.get('window').width / 8,
-        width: Dimensions.get('window').width / 8,
-      },
-      default: {
-        height: Dimensions.get('window').width / 7,
-        width: Dimensions.get('window').width / 7,
-        margin: 5,
-      },
-    }),
+    height: verticalScale(60),
+    width: horizontalScale(60),
     borderRadius: 100,
   },
   dayText: {
-    ...Platform.select({
-      android: {
-        fontSize: Dimensions.get('window').width * 0.05,
-      },
-      ios: {
-        fontSize: Dimensions.get('window').width * 0.05,
-      },
-      default: {
-        fontSize: Dimensions.get('window').width * 0.05,
-      },
-    }),
+    fontSize: moderateScale(24),
     margin: 'auto',
   },
   previousDate: {
