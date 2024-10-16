@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
@@ -31,12 +31,7 @@ export default function DayModal(props) {
           <Text style={styles.modalDate}>
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <View
-            style={{
-              margin: 'auto',
-              fontSize: Dimensions.get('window').width * 0.07,
-            }}
-          >
+          <View style={{ margin: 'auto' }}>
             {props.status.length !== 0 && props.status !== 'Cancelled' ? (
               <>
                 {props.status}
