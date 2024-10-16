@@ -1,5 +1,5 @@
-import { horizontalScale } from '@/styles/metrics';
 import { View, Text, StyleSheet } from 'react-native';
+import { moderateScale } from '@/styles/metrics';
 
 export default function EmptyDate(props) {
   return (
@@ -11,6 +11,7 @@ export default function EmptyDate(props) {
 
 const styles = StyleSheet.create({
   emptyDate: {
-    width: horizontalScale(70),
+    width: moderateScale(55),
+    margin: moderateScale(2),
   },
 });

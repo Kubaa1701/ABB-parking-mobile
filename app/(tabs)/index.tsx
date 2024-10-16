@@ -1,10 +1,12 @@
-import { ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import Calendar from '@/components/calendar/Calendar';
 import StatusView from '@/components/calendar/StatusView';
-import React, { useState } from 'react';
 import CalendarBtnView from '@/components/calendar/CalendarBtnView';
 import CancelBtn from '@/components/reservation/CancelBtn';
 import ConfirmBtn from '@/components/reservation/ConfirmBtn';
+import { verticalScale } from '@/styles/metrics';
+import MakeReservationInfo from '@/components/reservation/MakeReservationInfo';
 
 export default function Index() {
   const [pickedDates, setPickedDates] = useState([]);
@@ -35,18 +37,29 @@ export default function Index() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <CancelBtn
-            setDisplayReservation={setDisplayReservation}
-            setPickedDates={setPickedDates}
-            setPickedDate={setPickedDate}
-          />
-          <ConfirmBtn
-            data={pickedDates}
-            setDisplayReservation={setDisplayReservation}
-            setPickedDates={setPickedDates}
-          />
+          <MakeReservationInfo />
+          <View style={styles.buttonView}>
+            <ConfirmBtn
+              data={pickedDates}
+              setDisplayReservation={setDisplayReservation}
+              setPickedDates={setPickedDates}
+            />
+            <CancelBtn
+              setDisplayReservation={setDisplayReservation}
+              setPickedDates={setPickedDates}
+            />
+          </View>
         </React.Fragment>
       )}
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  buttonView: {
+    height: verticalScale(50),
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+})

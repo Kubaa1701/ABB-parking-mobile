@@ -1,8 +1,4 @@
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '@/styles/metrics';
+import { moderateScale, verticalScale } from '@/styles/metrics';
 import { Text, StyleSheet } from 'react-native';
 
 export default function DayName(props) {
@@ -12,7 +8,8 @@ export default function DayName(props) {
 const styles = StyleSheet.create({
   text: {
     height: verticalScale(30),
-    width: horizontalScale(70),
+    width: moderateScale(55),
+    margin: moderateScale(2),
     fontSize: moderateScale(22),
     textAlign: 'center',
     fontWeight: '500',
