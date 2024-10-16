@@ -1,6 +1,10 @@
 import { View, StyleSheet } from 'react-native';
 import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
-import { moderateScale, verticalScale } from '@/styles/metrics';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 export default function CalendarBtnView(props) {
   return (
@@ -15,15 +19,15 @@ export default function CalendarBtnView(props) {
 
 const styles = StyleSheet.create({
   view: {
-    width: '50%',
+    width: horizontalScale(200),
+    height: verticalScale(60),
     backgroundColor: '#707070',
-    height: '10%',
     borderRadius: moderateScale(16),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     left: '25%',
     position: 'absolute',
-    bottom: -verticalScale(100),
+    bottom: verticalScale(-100),
   },
 });

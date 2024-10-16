@@ -1,19 +1,25 @@
-import { Text, Pressable, Dimensions } from 'react-native';
+import { moderateScale } from '@/styles/metrics';
+import { Text, Pressable, Dimensions, StyleSheet } from 'react-native';
 
 export default function MakeReservationBtn(props) {
   return (
     <Pressable
+      style={styles.button}
       onPress={() => props.setDisplayReservation(!props.displayReservation)}
     >
-      <Text
-        style={{
-          fontSize: Dimensions.get('screen').width * 0.05,
-          // fontWeight: '400',
-          color: '#faf7f0',
-        }}
-      >
-        Make a reservation
-      </Text>
+      <Text style={styles.text}>Make a reservation</Text>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    height: '100%',
+    width: '100%',
+  },
+  text: {
+    fontSize: moderateScale(20),
+    color: '#faf7f0',
+    margin: 'auto',
+  },
+});

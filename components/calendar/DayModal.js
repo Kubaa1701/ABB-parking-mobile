@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
-import MakeReservationBtn from '../reservation/MakeReservationBtn';
+import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
 import {
   horizontalScale,
@@ -64,13 +64,14 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(28),
   },
   buttonView: {
-    width: '50%',
+    width: horizontalScale(200),
+    height: verticalScale(60),
     backgroundColor: '#707070',
-    height: '20%',
+    borderRadius: moderateScale(16),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     left: '25%',
-    bottom: '10%',
+    bottom: verticalScale(35),
   },
 });
