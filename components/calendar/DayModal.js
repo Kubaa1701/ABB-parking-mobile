@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
 import getCurrentDay from '@/scripts/getCurrnetDay';
 import CancelReservationBtn from '../reservation/CancelReservationBtn';
+import FreeSpaces from './FreeSpaces';
 
 export default function DayModal(props) {
   return (
@@ -47,7 +48,7 @@ export default function DayModal(props) {
                 />
               </>
             ) : (
-              'Free spaces 0/25'
+              <FreeSpaces day={props.dayOfMonth} />
             )}
           </View>
           {props.status.length === 0 ||
