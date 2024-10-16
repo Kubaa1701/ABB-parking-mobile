@@ -8,6 +8,7 @@ export default function CalendarBtnView(props) {
       <MakeReservationBtn
         displayReservation={props.displayReservation}
         setDisplayReservation={props.setDisplayReservation}
+        setPickedDate={props.setPickedDate}
       />
     </View>
   );

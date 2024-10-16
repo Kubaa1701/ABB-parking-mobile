@@ -6,9 +6,10 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import EmptyDate from '../calendar/EmptyDate';
+import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -24,6 +25,17 @@ export default function ReservationDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [picked, setPicked] = useState(false);
 
+  useEffect(() => {
+    if (
+      props.pickedDate !== 0 &&
+      props.pickedDate === dayOfMonth &&
+      !props.pickedDates.includes(props.pickedDate)
+    ) {
+      props.pickedDates.push(props.pickedDate);
+      setPicked(true);
+    }
+  }, [props.pickedDate]);
+
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
       return calculateEmptyDates(dayOfMonth, dayOfWeek).map((e, index) => (
@@ -32,13 +44,14 @@ export default function ReservationDay(props) {
     }
     return null;
   };
+
   return (
     <React.Fragment>
       {renderEmptyDates()}
       <View>
         <Pressable
           style={styles.dayText}
-          disabled={dayOfMonth <= props.today}
+          disabled={dayOfMonth <= getCurrentDay()}
           onPress={() => {
             setPicked(!picked);
             if (!picked) {
@@ -55,14 +68,14 @@ export default function ReservationDay(props) {
           <View
             style={[
               styles.day,
-              dayOfMonth < Number(props.today) && styles.previousDate,
+              dayOfMonth < getCurrentDay() && styles.previousDate,
               picked && styles.picked,
             ]}
           >
             <Text
               style={[
                 styles.dayText,
-                dayOfMonth === Number(props.today) && styles.today,
+                dayOfMonth === getCurrentDay() && styles.today,
               ]}
             >
               {dayOfMonth}
