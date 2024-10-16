@@ -9,7 +9,7 @@ import {
 import { useState, useEffect } from 'react';
 import React from 'react';
 import EmptyDate from '../calendar/EmptyDate';
-import getCurrentDay from '@/scripts/getCurrnetDay';
+import getCurrentDay from '@/scripts/getCurrentDay';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];

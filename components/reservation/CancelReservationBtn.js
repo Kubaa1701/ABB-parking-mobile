@@ -8,7 +8,7 @@ export default function CancelReservationBtn(props) {
       style={{ backgroundColor: 'grey' }}
       onPress={() => {
         sendData('user/post/cancelReservation', {
-          user_id: '3',
+          user_id: '1',
           day: props.day,
           month: getCurrentMonth(),
         });

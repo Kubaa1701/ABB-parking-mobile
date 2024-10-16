@@ -38,7 +38,7 @@ export default function Calendar(props) {
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     sendData('user/post/receiveReservationDate', {
-      id: '3',
+      id: '1',
       day: '1',
       month: '10',
     }).then((e) => {
