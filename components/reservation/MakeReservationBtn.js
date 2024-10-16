@@ -5,7 +5,10 @@ export default function MakeReservationBtn(props) {
   return (
     <Pressable
       style={styles.button}
-      onPress={() => props.setDisplayReservation(!props.displayReservation)}
+      onPress={() => {
+        props.setDisplayReservation(!props.displayReservation);
+        props.setPickedDate(props.day);
+      }}
     >
       <Text style={styles.buttonText}>Make a reservation</Text>
     </Pressable>

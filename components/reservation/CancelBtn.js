@@ -8,6 +8,7 @@ export default function CancelBtn(props) {
       onPress={() => {
         props.setDisplayReservation(false);
         props.setPickedDates([]);
+        props.setPickedDate();
       }}
     >
       <View>

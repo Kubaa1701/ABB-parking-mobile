@@ -12,7 +12,7 @@ export default function ConfirmBtn(props) {
         sendData('user/post/receiveReservationData', {
           day: getCurrentDay(),
           month: getCurrentMonth(),
-          user_id: 3,
+          user_id: 1,
           dates: props.data,
         }).then(() => props.setDisplayReservation(false));
         props.setPickedDates([]);

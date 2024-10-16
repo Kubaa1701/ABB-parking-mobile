@@ -1,7 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '@/components/reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
+import getCurrentDay from '@/scripts/getCurrentDay';
+import CancelReservationBtn from '../reservation/CancelReservationBtn';
 import {
   horizontalScale,
   moderateScale,
@@ -13,7 +16,10 @@ export default function DayModal(props) {
     <View style={{ flex: 1 }}>
       <Modal
         isVisible={props.visible}
-        onBackdropPress={() => props.setVisible(false)}
+        onBackdropPress={() => {
+          props.setVisible(false);
+          props.setPickedDate();
+        }}
         animationIn="slideInUp"
         animationOut="slideOutDown"
         hideModalContentWhileAnimating={true}
@@ -25,14 +31,33 @@ export default function DayModal(props) {
           <Text style={styles.modalDate}>
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <Text style={styles.modalStatus}>
-            {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
-          </Text>
-          {props.status.length === 0 ? (
+          <View
+            style={{
+              margin: 'auto',
+              fontSize: Dimensions.get('window').width * 0.07,
+            }}
+          >
+            {props.status.length !== 0 && props.status !== 'Cancelled' ? (
+              <>
+                {props.status}
+                <CancelReservationBtn
+                  day={props.dayOfMonth}
+                  onCancel={props.onCancel}
+                />
+              </>
+            ) : (
+              <Text style={styles.modalStatus}>Free spaces 0/25</Text>
+            )}
+          </View>
+          {props.status.length === 0 ||
+          (props.status === 'Cancelled' &&
+            props.dayOfMonth !== getCurrentDay()) ? (
             <View style={styles.buttonView}>
               <MakeReservationBtn
                 displayReservation={props.displayReservation}
                 setDisplayReservation={props.setDisplayReservation}
+                day={props.dayOfMonth}
+                setPickedDate={props.setPickedDate}
               />
             </View>
           ) : (
