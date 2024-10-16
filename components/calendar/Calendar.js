@@ -34,6 +34,7 @@ function getCurrentMonthName() {
 export default function Calendar(props) {
   const day = createDaysTable();
   const [result, setResult] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     sendData('user/post/receiveReservationDate', {
       id: '3',
@@ -44,7 +45,11 @@ export default function Calendar(props) {
         setResult(e.result);
       }
     });
-  }, []);
+  }, [refresh]);
+
+  function onCancel() {
+    setRefresh(!refresh);
+  }
 
   return (
     <View
@@ -75,6 +80,7 @@ export default function Calendar(props) {
                     displayReservation={props.displayReservation}
                     setDisplayReservation={props.setDisplayReservation}
                     setPickedDate={props.setPickedDate}
+                    onCancel={onCancel}
                   />
                 ) : (
                   <ReservationDay

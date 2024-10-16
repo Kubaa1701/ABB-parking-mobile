@@ -5,6 +5,7 @@ export default function MakeReservationBtn(props) {
     <Pressable
       onPress={() => {
         props.setDisplayReservation(!props.displayReservation);
+        props.setPickedDate(props.day);
       }}
     >
       <Text

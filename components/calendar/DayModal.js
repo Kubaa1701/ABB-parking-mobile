@@ -1,15 +1,20 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
+import React from 'react';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
 import getCurrentDay from '@/scripts/getCurrnetDay';
+import CancelReservationBtn from '../reservation/CancelReservationBtn';
 
 export default function DayModal(props) {
   return (
     <View style={{ flex: 1 }}>
       <Modal
         isVisible={props.visible}
-        onBackdropPress={() => props.setVisible(false)}
+        onBackdropPress={() => {
+          props.setVisible(false);
+          props.setPickedDate();
+        }}
         animationIn="slideInUp"
         animationOut="slideOutDown"
         hideModalContentWhileAnimating={true}
@@ -27,15 +32,27 @@ export default function DayModal(props) {
           >
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <Text
+          <View
             style={{
               margin: 'auto',
               fontSize: Dimensions.get('window').width * 0.07,
             }}
           >
-            {props.status.length === 0 ? 'Free spaces 0/25' : props.status}
-          </Text>
-          {props.status.length === 0 && props.dayOfMonth !== getCurrentDay() ? (
+            {props.status.length !== 0 && props.status !== 'Cancelled' ? (
+              <>
+                {props.status}
+                <CancelReservationBtn
+                  day={props.dayOfMonth}
+                  onCancel={props.onCancel}
+                />
+              </>
+            ) : (
+              'Free spaces 0/25'
+            )}
+          </View>
+          {props.status.length === 0 ||
+          (props.status === 'Cancelled' &&
+            props.dayOfMonth !== getCurrentDay()) ? (
             <View
               style={{
                 width: '50%',

@@ -80,6 +80,8 @@ export default function CalendarDay(props) {
           dayOfMonth={dayOfMonth}
           displayReservation={props.displayReservation}
           setDisplayReservation={props.setDisplayReservation}
+          onCancel={props.onCancel}
+          setPickedDate={props.setPickedDate}
         />
       </View>
       {dayOfWeek === 5 && <Text>{'\n'}</Text>}
@@ -106,7 +108,6 @@ const styles = StyleSheet.create({
     }),
     borderRadius: 100,
   },
-  //TODO: fontSize dependent on window width
   dayText: {
     ...Platform.select({
       android: {

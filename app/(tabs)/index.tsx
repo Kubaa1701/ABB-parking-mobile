@@ -8,7 +8,7 @@ import ConfirmBtn from '@/components/reservation/ConfirmBtn';
 
 export default function Index() {
   const [pickedDates, setPickedDates] = useState([]);
-  const [pickedDate, setPickedDate] = useState(0);
+  const [pickedDate, setPickedDate] = useState();
   const [displayReservation, setDisplayReservation] = useState(false);
   return (
     <ScrollView
@@ -30,6 +30,7 @@ export default function Index() {
           <CalendarBtnView
             displayReservation={displayReservation}
             setDisplayReservation={setDisplayReservation}
+            setPickedDate={setPickedDate}
           />
         </React.Fragment>
       ) : (
@@ -37,6 +38,7 @@ export default function Index() {
           <CancelBtn
             setDisplayReservation={setDisplayReservation}
             setPickedDates={setPickedDates}
+            setPickedDate={setPickedDate}
           />
           <ConfirmBtn
             data={pickedDates}

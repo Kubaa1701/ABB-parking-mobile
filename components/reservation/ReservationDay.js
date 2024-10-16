@@ -26,11 +26,15 @@ export default function ReservationDay(props) {
   const [picked, setPicked] = useState(false);
 
   useEffect(() => {
-    if (props.pickedDate !== 0 && props.pickedDate === dayOfMonth) {
-      props.pickedDates.push(dayOfMonth);
+    if (
+      props.pickedDate !== 0 &&
+      props.pickedDate === dayOfMonth &&
+      !props.pickedDates.includes(props.pickedDate)
+    ) {
+      props.pickedDates.push(props.pickedDate);
       setPicked(true);
     }
-  }, [props.pickedDate, dayOfMonth, props.pickedDates]);
+  }, [props.pickedDate]);
 
   const renderEmptyDates = () => {
     if (dayOfMonth === 1 && dayOfWeek !== 1) {
