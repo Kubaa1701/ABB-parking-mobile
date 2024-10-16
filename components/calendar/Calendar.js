@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   mainView: {
     width: '100%',
     backgroundColor: '#D9D9D9',
-    paddingBottom: verticalScale(5),
+    paddingBottom: verticalScale(10),
   },
   view: {
     margin: 'auto',

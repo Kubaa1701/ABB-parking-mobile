@@ -2,11 +2,7 @@ import { View, Pressable, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import EmptyDate from './EmptyDate';
 import DayModal from './DayModal';
-import {
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from '@/styles/metrics';
+import { moderateScale } from '@/styles/metrics';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -84,9 +80,10 @@ export default function CalendarDay(props) {
 
 const styles = StyleSheet.create({
   day: {
-    height: verticalScale(60),
-    width: horizontalScale(60),
+    height: moderateScale(55),
+    width: moderateScale(55),
     borderRadius: 100,
+    margin: moderateScale(2),
   },
   dayText: {
     fontSize: moderateScale(24),
