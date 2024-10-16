@@ -10,6 +10,7 @@ import { useState } from 'react';
 import React from 'react';
 import EmptyDate from './EmptyDate';
 import DayModal from './DayModal';
+import getCurrentDay from '@/scripts/getCurrnetDay';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -47,9 +48,10 @@ export default function CalendarDay(props) {
       <View>
         <Pressable
           style={styles.dayText}
-          disabled={dayOfMonth < props.today}
+          disabled={dayOfMonth < getCurrentDay()}
           onPress={() => {
             setModalVisible(!modalVisible);
+            props.setPickedDate(dayOfMonth);
           }}
         >
           <View
@@ -58,13 +60,13 @@ export default function CalendarDay(props) {
               statusName === 'Approved' && styles.approved,
               statusName === 'Pending' && styles.pending,
               statusName === 'Rejected' && styles.rejected,
-              dayOfMonth < Number(props.today) && styles.previousDate,
+              dayOfMonth < getCurrentDay() && styles.previousDate,
             ]}
           >
             <Text
               style={[
                 styles.dayText,
-                dayOfMonth === Number(props.today) && styles.today,
+                dayOfMonth === getCurrentDay() && styles.today,
               ]}
             >
               {dayOfMonth}
