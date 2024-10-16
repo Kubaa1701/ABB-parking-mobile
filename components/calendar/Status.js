@@ -1,31 +1,29 @@
-import { View, Text, Dimensions } from 'react-native-web';
+import { moderateScale } from '@/styles/metrics';
+import { View, Text, StyleSheet } from 'react-native-web';
 
 export default function Status(props) {
   return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: '5%',
-        marginLeft: 10,
-      }}
-    >
-      <View
-        style={{
-          width: Dimensions.get('window').width * 0.08,
-          height: Dimensions.get('window').width * 0.08,
-          borderRadius: 100,
-          backgroundColor: props.color,
-        }}
-      />
-      <Text
-        style={{
-          fontSize: Dimensions.get('window').width * 0.04,
-          margin: '1%',
-        }}
-      >
-        {props.status}
-      </Text>
+    <View style={styles.mainView}>
+      <View style={[styles.view, { backgroundColor: props.color }]} />
+      <Text style={styles.text}>{props.status}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  mainView: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '5%',
+    marginLeft: 10,
+  },
+  view: {
+    width: moderateScale(34),
+    height: moderateScale(34),
+    borderRadius: 100,
+  },
+  text: {
+    fontSize: moderateScale(17),
+    margin: '1%',
+  },
+});

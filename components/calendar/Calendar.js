@@ -1,11 +1,12 @@
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import CalendarDay from './CalendarDay';
 import ReservationDay from '../reservation/ReservationDay';
 import { getDaysInMonth, getISODay } from 'date-fns';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import sendData from '@/scripts/sendData';
 import Days from './Days';
-import React from 'react';
+import { moderateScale, verticalScale } from '@/styles/metrics';
+import getCurrentDay from '@/scripts/getCurrentDay';
 
 function createDaysTable() {
   const today = new Date();
@@ -52,20 +53,10 @@ export default function Calendar(props) {
   }
 
   return (
-    <View
-      style={{ width: '100%', backgroundColor: '#D9D9D9', paddingBottom: 10 }}
-    >
+    <View style={styles.mainView}>
       {result ? (
-        <View style={{ margin: 'auto', marginTop: 20 }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: Dimensions.get('window').width * 0.08,
-              fontWeight: 'bold',
-            }}
-          >
-            {getCurrentMonthName()}
-          </Text>
+        <View style={styles.view}>
+          <Text style={styles.month}>{getCurrentMonthName()}</Text>
           <Days names={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']} />
           <Text>
             {day.map((e, index) => (
@@ -102,3 +93,21 @@ export default function Calendar(props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  mainView: {
+    width: '100%',
+    backgroundColor: '#D9D9D9',
+    paddingBottom: verticalScale(5),
+  },
+  view: {
+    margin: 'auto',
+    marginTop: verticalScale(20),
+  },
+  month: {
+    textAlign: 'center',
+    fontSize: moderateScale(32),
+    fontWeight: 'bold',
+    marginBottom: verticalScale(12),
+  },
+});

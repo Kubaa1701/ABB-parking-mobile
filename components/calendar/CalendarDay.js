@@ -1,16 +1,13 @@
-import {
-  View,
-  Pressable,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Platform,
-} from 'react-native';
-import { useState } from 'react';
-import React from 'react';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 import EmptyDate from './EmptyDate';
 import DayModal from './DayModal';
 import getCurrentDay from '@/scripts/getCurrnetDay';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 function calculateEmptyDates(dayOfMonth, dayOfWeek) {
   let lastMonth = [];
@@ -91,35 +88,12 @@ export default function CalendarDay(props) {
 
 const styles = StyleSheet.create({
   day: {
-    ...Platform.select({
-      android: {
-        height: Dimensions.get('window').width / 6,
-        width: Dimensions.get('window').width / 6,
-      },
-      ios: {
-        height: Dimensions.get('window').width / 8,
-        width: Dimensions.get('window').width / 8,
-      },
-      default: {
-        height: Dimensions.get('window').width / 7,
-        width: Dimensions.get('window').width / 7,
-        margin: 5,
-      },
-    }),
+    height: verticalScale(70),
+    width: horizontalScale(70),
     borderRadius: 100,
   },
   dayText: {
-    ...Platform.select({
-      android: {
-        fontSize: 20,
-      },
-      ios: {
-        fontSize: 20,
-      },
-      default: {
-        fontSize: Dimensions.get('window').width * 0.05,
-      },
-    }),
+    fontSize: moderateScale(22),
     margin: 'auto',
   },
   approved: {

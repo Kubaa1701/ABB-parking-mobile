@@ -1,0 +1,75 @@
+{
+  "messages": {
+    "reservation": {
+      "success": {
+        "success": {
+          "beginning": "Reservation on day ",
+          "continuation": " was made successfully, and it's current status is ",
+          "ending": "."
+        }
+      },
+      "error": {
+        "past_date": {
+          "beginning": "Reservation on day ",
+          "ending": " wasn't made, because you have chosen past date. "
+        },
+        "too_late": {
+          "beginning": "Reservation on day ",
+          "ending": " are already closed, we are sorry."
+        },
+        "already_made": {
+          "beginning": "You have already made reservation on ",
+          "ending": "."
+        },
+        "something_went_wrong": {
+          "beginning": "Something went wrong with reservation on ",
+          "ending": "."
+        }
+      }
+    },
+    "login": {
+      "error": "We had trouble signing you in."
+    }
+  },
+  "calendar": {
+    "month_names": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    },
+    "weekdays_names": {
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wen",
+      "4": "Thu",
+      "5": "Fri"
+    }
+  },
+  "statuses": {
+    "approved": "Approved",
+    "pending": "Pending",
+    "rejected": "Rejected"
+  },
+  "text": {
+    "sign_in": "Sign in with",
+    "make_reservation": "Make a reservation",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "logout": "Log out",
+    "notification": "Turn notification's off",
+    "free_spaces": "Free spaces"
+  },
+  "nav_bar": {
+    "home": "Home",
+    "settings": "Settings"
+  }
+}
