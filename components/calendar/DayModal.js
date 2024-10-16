@@ -46,7 +46,7 @@ export default function DayModal(props) {
                 />
               </>
             ) : (
-              <Text style={styles.modalStatus}>'Free spaces 0/25'</Text>
+              <Text style={styles.modalStatus}>Free spaces 0/25</Text>
             )}
           </View>
           {props.status.length === 0 ||
