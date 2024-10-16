@@ -11,8 +11,7 @@ export default function CancelReservationBtn(props) {
           user_id: '1',
           day: props.day,
           month: getCurrentMonth(),
-        });
-        props.onCancel();
+        }).then(() => props.onCancel());
       }}
     >
       <Text style={{ textAlign: 'center' }}>Cancel</Text>
