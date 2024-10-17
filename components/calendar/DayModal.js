@@ -32,21 +32,25 @@ export default function DayModal(props) {
           <Text style={styles.modalDate}>
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <View style={{ margin: 'auto' }}>
-            {props.status.length !== 0 && props.status !== 'Cancelled' ? (
-              <>
-                <Text style={{ fontSize: moderateScale(28) }}>
-                  {props.status}
-                </Text>
+          {props.status.length !== 0 && props.status !== 'Cancelled' ? (
+            <React.Fragment>
+              <View style={{ margin: 'auto' }}>
+                <View>
+                  <Text style={styles.statusText}>{props.status}</Text>
+                </View>
+              </View>
+              <View style={styles.buttonView}>
                 <CancelReservationBtn
                   day={props.dayOfMonth}
                   onCancel={props.onCancel}
                 />
-              </>
-            ) : (
+              </View>
+            </React.Fragment>
+          ) : (
+            <View style={{ margin: 'auto' }}>
               <FreeSpaces day={props.dayOfMonth} />
-            )}
-          </View>
+            </View>
+          )}
           {props.status.length === 0 ||
           (props.status === 'Cancelled' &&
             props.dayOfMonth !== getCurrentDay()) ? (
@@ -59,7 +63,7 @@ export default function DayModal(props) {
               />
             </View>
           ) : (
-            ''
+            <React.Fragment />
           )}
         </View>
       </Modal>
@@ -96,5 +100,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     left: '25%',
     bottom: verticalScale(35),
+  },
+  statusText: {
+    margin: 'auto',
+    fontSize: moderateScale(28),
   },
 });

@@ -10,7 +10,6 @@ import {
 export default function CancelReservationBtn(props) {
   return (
     <Pressable
-      style={{ backgroundColor: 'grey' }}
       onPress={() => {
         sendData('user/post/cancelReservation', {
           user_id: '1',
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    fontSize: moderateScale(26),
+    fontSize: moderateScale(22),
     margin: 'auto',
     color: '#faf7f0',
   },

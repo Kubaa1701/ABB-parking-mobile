@@ -1,28 +1,32 @@
-import { moderateScale } from '@/styles/metrics';
-import { Text, Pressable, StyleSheet } from 'react-native';
+import { moderateScale, verticalScale } from '@/styles/metrics';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 export default function MakeReservationBtn(props) {
   return (
     <Pressable
-      style={styles.button}
       onPress={() => {
         props.setDisplayReservation(!props.displayReservation);
         props.setPickedDate(props.day);
       }}
     >
-      <Text style={styles.buttonText}>Make a reservation</Text>
+      <View style={styles.buttonView}>
+        <Text style={styles.buttonText}>Make a reservation</Text>
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    height: '100%',
-    width: '100%',
+  buttonView: {
+    height: verticalScale(50),
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
   },
   buttonText: {
-    fontSize: moderateScale(20),
-    color: '#faf7f0',
+    textAlign: 'center',
+    fontSize: moderateScale(22),
     margin: 'auto',
+    color: '#faf7f0',
   },
 });
