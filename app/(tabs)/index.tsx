@@ -47,6 +47,7 @@ export default function Index() {
             <CancelBtn
               setDisplayReservation={setDisplayReservation}
               setPickedDates={setPickedDates}
+              setPickedDate={setPickedDate}
             />
           </View>
         </React.Fragment>
@@ -62,4 +63,4 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
-})
+});

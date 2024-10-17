@@ -1,6 +1,11 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View, StyleSheet } from 'react-native';
 import sendData from '@/scripts/sendData';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from '@/styles/metrics';
 
 export default function CancelReservationBtn(props) {
   return (
@@ -14,7 +19,24 @@ export default function CancelReservationBtn(props) {
         }).then(() => props.onCancel());
       }}
     >
-      <Text style={{ textAlign: 'center' }}>Cancel</Text>
+      <View style={styles.buttonView}>
+        <Text style={styles.buttonText}>Cancel</Text>
+      </View>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  buttonView: {
+    height: verticalScale(50),
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: moderateScale(26),
+    margin: 'auto',
+    color: '#faf7f0',
+  },
+});

@@ -35,7 +35,9 @@ export default function DayModal(props) {
           <View style={{ margin: 'auto' }}>
             {props.status.length !== 0 && props.status !== 'Cancelled' ? (
               <>
-                {props.status}
+                <Text style={{ fontSize: moderateScale(28) }}>
+                  {props.status}
+                </Text>
                 <CancelReservationBtn
                   day={props.dayOfMonth}
                   onCancel={props.onCancel}
