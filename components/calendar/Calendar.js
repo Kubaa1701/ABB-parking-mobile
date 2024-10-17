@@ -38,7 +38,7 @@ export default function Calendar(props) {
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     sendData('user/post/receiveReservationDate', {
-      id: '3',
+      id: '1',
       day: '1',
       month: '10',
     }).then((e) => {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   mainView: {
     width: '100%',
     backgroundColor: '#D9D9D9',
-    paddingBottom: verticalScale(5),
+    paddingBottom: verticalScale(10),
   },
   view: {
     margin: 'auto',

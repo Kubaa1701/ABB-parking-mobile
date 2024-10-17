@@ -88,12 +88,13 @@ export default function CalendarDay(props) {
 
 const styles = StyleSheet.create({
   day: {
-    height: verticalScale(70),
-    width: horizontalScale(70),
+    height: moderateScale(55),
+    width: moderateScale(55),
     borderRadius: 100,
+    margin: moderateScale(2),
   },
   dayText: {
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(24),
     margin: 'auto',
   },
   approved: {
