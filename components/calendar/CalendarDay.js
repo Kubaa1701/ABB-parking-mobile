@@ -2,7 +2,7 @@ import { View, Pressable, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import EmptyDate from './EmptyDate';
 import DayModal from './DayModal';
-import getCurrentDay from '@/scripts/getCurrnetDay';
+import getCurrentDay from '@/scripts/getCurrentDay';
 import {
   horizontalScale,
   moderateScale,

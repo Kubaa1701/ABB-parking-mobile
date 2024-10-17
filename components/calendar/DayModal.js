@@ -3,7 +3,7 @@ import React from 'react';
 import Modal from 'react-native-modal';
 import MakeReservationBtn from '../reservation/MakeReservationBtn';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
-import getCurrentDay from '@/scripts/getCurrnetDay';
+import getCurrentDay from '@/scripts/getCurrentDay';
 import CancelReservationBtn from '../reservation/CancelReservationBtn';
 import FreeSpaces from './FreeSpaces';
 import {
@@ -32,12 +32,7 @@ export default function DayModal(props) {
           <Text style={styles.modalDate}>
             {props.dayOfMonth + '.' + getCurrentMonth()}
           </Text>
-          <View
-            style={{
-              margin: 'auto',
-              fontSize: Dimensions.get('window').width * 0.07,
-            }}
-          >
+          <View style={{ margin: 'auto' }}>
             {props.status.length !== 0 && props.status !== 'Cancelled' ? (
               <>
                 {props.status}
