@@ -10,6 +10,7 @@ import {
   moderateScale,
   verticalScale,
 } from '@/styles/metrics';
+import FreeSpaces from './FreeSpaces';
 
 export default function DayModal(props) {
   return (
@@ -41,7 +42,7 @@ export default function DayModal(props) {
                 />
               </>
             ) : (
-              <Text style={styles.modalStatus}>Free spaces 0/25</Text>
+              <FreeSpaces day={props.dayOfMonth} />
             )}
           </View>
           {props.status.length === 0 ||

@@ -18,6 +18,7 @@ function calculateEmptyDates(dayOfMonth, dayOfWeek) {
 export default function ReservationDay(props) {
   const { dayOfMonth, dayOfWeek } = props;
   const [picked, setPicked] = useState(false);
+  let statusLen;
 
   useEffect(() => {
     if (
@@ -39,13 +40,22 @@ export default function ReservationDay(props) {
     return null;
   };
 
+  function checkIfReserved() {
+    props.status.forEach((e) => {
+      if (e.day === dayOfMonth && e.status !== 'Cancelled') {
+        statusLen = String(e.status).length;
+      }
+    });
+  }
+  checkIfReserved();
+
   return (
     <React.Fragment>
       {renderEmptyDates()}
       <View>
         <Pressable
           style={styles.dayText}
-          disabled={dayOfMonth <= getCurrentDay()}
+          disabled={dayOfMonth <= getCurrentDay() || statusLen > 0}
           onPress={() => {
             setPicked(!picked);
             if (!picked) {
@@ -56,7 +66,6 @@ export default function ReservationDay(props) {
                 1
               );
             }
-            console.log(props.pickedDates);
           }}
         >
           <View
@@ -64,6 +73,7 @@ export default function ReservationDay(props) {
               styles.day,
               dayOfMonth < getCurrentDay() && styles.previousDate,
               picked && styles.picked,
+              statusLen > 0 && styles.reserved,
             ]}
           >
             <Text
@@ -101,5 +111,8 @@ const styles = StyleSheet.create({
   },
   picked: {
     backgroundColor: '#4fabd6',
+  },
+  reserved: {
+    backgroundColor: '#EF8787',
   },
 });

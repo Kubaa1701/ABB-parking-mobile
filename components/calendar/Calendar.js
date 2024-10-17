@@ -78,6 +78,7 @@ export default function Calendar(props) {
                     key={e[0]}
                     dayOfMonth={e[0]}
                     dayOfWeek={e[1]}
+                    status={result}
                     lastDayOfMonth={day[day.length - 1][0]}
                     pickedDates={props.pickedDates}
                     pickedDate={props.pickedDate}

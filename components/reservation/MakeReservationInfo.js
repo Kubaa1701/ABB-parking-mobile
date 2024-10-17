@@ -5,7 +5,14 @@ import { moderateScale, verticalScale } from '@/styles/metrics';
 export default function MakeReservationInfo() {
   return (
     <View style={styles.view}>
-      <Status color={'#4fabd6'} status={'Selected'} />
+      <Status
+        color={'#4fabd6'}
+        status={'Selected'}
+      />
+      <Status
+        color={'#EF8787'}
+        status={'Reserved'}
+      />
       <Text style={styles.text}>Choose days to make a reservation for</Text>
     </View>
   );
