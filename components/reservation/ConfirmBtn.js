@@ -1,7 +1,7 @@
 import { View, Pressable, Text } from 'react-native';
 import sendData from '@/scripts/sendData';
 import getCurrentMonth from '@/scripts/getCurrentMonth';
-import getCurrentDay from '@/scripts/getCurrnetDay';
+import getCurrentDay from '@/scripts/getCurrentDay';
 
 export default function ConfirmBtn(props) {
   return (
