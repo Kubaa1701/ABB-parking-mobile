@@ -1,5 +1,5 @@
 import { moderateScale } from '@/styles/metrics';
-import { View, Text, StyleSheet } from 'react-native-web';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function Status(props) {
   return (
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   view: {
     width: moderateScale(34),
     height: moderateScale(34),
-    borderRadius: 100,
+    borderRadius: moderateScale(100),
   },
   text: {
     fontSize: moderateScale(17),

@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from 'react-native-web';
+import { Text, View, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
 import { moderateScale, verticalScale } from '@/styles/metrics';
 import getData from '@/scripts/getData';

@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   day: {
     height: moderateScale(55),
     width: moderateScale(55),
-    borderRadius: 100,
+    borderRadius: moderateScale(100),
     margin: moderateScale(2),
   },
   dayText: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     margin: 'auto',
   },
   previousDate: {
-    opacity: '40%',
+    opacity: 0.4,
   },
   today: {
     color: '#faf7f0',
